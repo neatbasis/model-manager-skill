@@ -8,7 +8,8 @@ from .lib.CyberHouseClient import CyberHouseClient
 class ModelManager(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
-        self.client = CyberHouseClient(LOG, "GPT2Client")
+        gpt_url = self.settings.get('gpt_url', False)
+        self.client = CyberHouseClient(LOG, gpt_url)
         nltk.download('punkt')
         nltk.download('averaged_perceptron_tagger')
         nltk.download('universal_tagset')

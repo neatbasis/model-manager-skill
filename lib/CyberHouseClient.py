@@ -4,10 +4,10 @@ import requests
 class CyberHouseClient:
     _name=''
     _logger=None
-    def __init__(self, logger, name):
+    def __init__(self, logger, url="http://localhost:8080/"):
         self._logger=logger
-        self._name=name
-        print("starting")
+        self._url=url
+        self._logger.info("Starting CyberHouseClient")
 
     def connect_cyberhouse(self):
         self._logger.info(self._name)
@@ -16,10 +16,8 @@ class CyberHouseClient:
     def request(self, text):
 
         # api-endpoint [OpenAI GPT2 Scratch Pad](https://github.com/NaxAlpha/gpt-2xy)
-        URL = "http://grape.hacklair:18080/"
-
-        # location given here
-        #location = "delhi technological university"
+        # docker run -p 18080:8080 --rm -d gpt-2xy
+        URL = self._url
 
         # defining a params dict for the parameters to be sent to the API
         PARAMS = {'text':text}
