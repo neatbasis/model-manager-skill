@@ -2,7 +2,13 @@
 Manages abstract models
 
 ## About
-Manages abstract objects and their relations
+Manages abstract objects and their relations. Generates extrapolations, with [gpt-2xy](https://github.com/NaxAlpha/gpt-2xy.git) docker image.
+
+```
+
+docker run -p 8080:8080 --rm -d gpt-2xy
+
+```
 
 ## Examples
 * "Create a model"
@@ -14,4 +20,3 @@ Sebastian Mäki
 **Information**
 
 ## Tags
-
