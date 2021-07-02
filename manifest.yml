@@ -9,6 +9,10 @@ dependencies:
   python:
     - networkx
     - nltk
+    - graphene
+    - requests
+    - gensim
+    - nlp
 #     - requests
 #     - gensim
 #

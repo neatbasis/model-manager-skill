@@ -3,11 +3,12 @@ from mycroft import MycroftSkill, intent_file_handler, intent_handler
 import networkx as nx
 import nltk
 from mycroft.util import LOG
-
+from .lib.CyberHouseClient import CyberHouseClient
 
 class ModelManager(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
+        self.client = CyberHouseClient(LOG, "GPT2Client")
         nltk.download('punkt')
         nltk.download('averaged_perceptron_tagger')
         nltk.download('universal_tagset')
@@ -55,11 +56,16 @@ class ModelManager(MycroftSkill):
         self.speak('Would you like to {} {}?'.format(goal, context))
         self.speak('Can you {}?'.format(ability))
         self.speak('Do you have {}?'.format(capacity))
-        
+
+        # GPT-2 Response
+        response = self.client.request("I want to {} {}. I need {} and I have to {} to".format(goal, context, capacity, ability))
+        self.speak('{}'.format(response))
         #tokens = nltk.word_tokenize(sentence)
         #tagged_tokens = nltk.pos_tag(tokens)
         #tagged_tokens_str = ', '.join(str(word) + "(" + str(tag) + ")" for word,tag in tagged_tokens)
-        self.log.info("Capacity: Goal:{0}, Context: {1}, Ability: {2}, Capacity: {3}".format(goal, context, ability, capacity))
+        breakdown = "Capacity: Goal:{0}, Context: {1}, Ability: {2}, Capacity: {3}".format(goal, context, ability, capacity)
+        self.speak('{}'.format(breakdown))
+        self.log.info('{}'.format(breakdown))
 
     #def ask_object(self, a, b):
     #    sentence = self.get_response('provide.object.relation.object') + "."
