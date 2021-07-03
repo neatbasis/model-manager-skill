@@ -7,7 +7,6 @@ skillMetadata:
           label: Requires running server https://github.com/NaxAlpha/gpt-2xy.git
         - name: gpt_url
           type: text
-          label: URL
+          label: GPT2 Scratch Pad URL
           value: "http://localhost:8080/"
-          placeholder: demo prompt in the input box
-    
+          placeholder: GPT2 Scratch Pad URL
