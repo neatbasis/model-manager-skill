@@ -14,6 +14,8 @@ class ModelManager(MycroftSkill):
         nltk.download('averaged_perceptron_tagger')
         nltk.download('universal_tagset')
         self.contextSet = []
+        self.capabilitySet = []
+        self.generatorSet = []
         self.G = nx.DiGraph()
         # somecomment
 
@@ -45,14 +47,30 @@ class ModelManager(MycroftSkill):
 
     @intent_handler(IntentBuilder('CapabilityContext').require('Define').require('Capability'))
     def handle_define_capability(self, message):
-        # What is being provided
+
+        # What is being provided?
         goal = self.get_response('provide.goal')
-        # When
+
+        # When to provide it?
         context = self.get_response('provide.context')
-        # How
+
+        # How to provide it?
         ability = self.get_response('provide.ability')
-        # What is required
+
+        # What is required?
         capacity = self.get_response('provide.capacity')
+
+        # Capability defined
+
+
+        # Temporary store capability
+        #self.capabilitySet.append('{}'.format(capability))
+
+        # Generate capability
+        # self.generatorSet.append('{}'.format(self.client.request(self.contextSet[-1])))
+
+        # Functions to implement for capability
+        # TODO: Create capability, introduce concepts in relation to other concepts, test capability recall, enhance capability, schedule capability,
 
         self.speak('Would you like to {} {}?'.format(goal, context))
         self.speak('Can you {}?'.format(ability))
@@ -64,7 +82,7 @@ class ModelManager(MycroftSkill):
         #tokens = nltk.word_tokenize(sentence)
         #tagged_tokens = nltk.pos_tag(tokens)
         #tagged_tokens_str = ', '.join(str(word) + "(" + str(tag) + ")" for word,tag in tagged_tokens)
-        breakdown = "Capacity: Goal:{0}, Context: {1}, Ability: {2}, Capacity: {3}".format(goal, context, ability, capacity)
+        breakdown = "Capability: Goal:{0}, Context: {1}, Ability: {2}, Capacity: {3}".format(goal, context, ability, capacity)
         self.speak('{}'.format(breakdown))
         self.log.info('{}'.format(breakdown))
 
